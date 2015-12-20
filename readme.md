@@ -10,4 +10,4 @@ tcc_users 是要创建的表名
 php artisan make:migration seed_uses_table
 会生成一个SeedUsersTable 的文件  这里的users 与表无关
 
-php artisan migrate  创建表、填充数据
+php artisan migrate  创建表、填充数据 都用它
