@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -23,6 +23,47 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    /**
+     * 登录时候的用户名字段
+     * 默认 email
+     * @var string
+     */
+    protected $username = 'username';
+
+    /**
+     * 登录路由
+     * 默认：'/auth/login'
+     * @var string
+     */
+    protected $loginPath = '/auth/login';
+
+    /**
+     * 最大尝试登录次数
+     * 默认：5
+     * @var int
+     */
+    private $maxLoginAttempts = 3;
+
+    /**
+     * 账户被锁定时间 S
+     * 默认：60
+     * @var int
+     */
+    private $lockoutTime = 60;
+
+    /**
+     * 登出后的跳转路由
+     * 默认：'/'
+     * @var string
+     */
+    private $redirectAfterLogout = '/';
+
+    /**
+     * 登录成功后的跳转路由
+     * 默认：'/home'
+     * @var string
+     */
+    private $redirectTo = '/index';
     /**
      * Create a new authentication controller instance.
      *
