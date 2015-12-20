@@ -143,7 +143,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
         /**
          * 1. 注册绑定 Illuminate\Foundation\Application 容器
          * 2. 注册绑定 EventServiceProvider and RoutingServiceProvider 这两个服务容器
-         *3. 注册框架的所有的核心服务
+         * 3. 注册框架的所有的核心服务
          */
         $this->registerBaseBindings();
 
@@ -229,7 +229,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
         ];
          */
         /**
-         *  看 $bootstrapper =  'Illuminate\Foundation\Bootstrap\RegisterProviders' 时
+         *  在foreach 循环里 $bootstrapper =  'Illuminate\Foundation\Bootstrap\RegisterProviders' 时
          * 主要就是  执行  $this->make($bootstrapper)->bootstrap($this);  它分成几部
          * 1. call  Illuminate\Foundation\Bootstrap\RegisterProviders  的 bootstrap($this) method
          * 2. call Illuminate\Foundation\Application  的 registerConfiguredProviders()  method
