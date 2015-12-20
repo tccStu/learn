@@ -202,7 +202,7 @@ class Container implements ArrayAccess, ContainerContract
          * 在这里$app->singleton('Illuminate\Contracts\Http\Kernel','App\Http\Kernel');  call 方法中
          * getClosure()
          * getClosure 的返回值  是这种形式  $c->$method($concrete, $parameters)
-         * 等价于   $app->make('App\Http\Kernel');
+         * 在此时等价于   $app->make('App\Http\Kernel');
          */
         if (! $concrete instanceof Closure) {
             $concrete = $this->getClosure($abstract, $concrete);

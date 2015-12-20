@@ -207,8 +207,7 @@ abstract class Facade
          *  example : 如果我用  Session::get(); 的时候
          *  $method = get();
          *  $args =  null;
-         *  $instance =   session 类  的 实例化
-         *
+         *  $instance =   session 类  的 实例化，先找到接口文件，然后找到对应的实现
          */
         $instance = static::getFacadeRoot();
 

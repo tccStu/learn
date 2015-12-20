@@ -83,7 +83,7 @@ class Kernel implements KernelContract
     {
         /**
          * $request = Illuminate\Http\Request::capture()
-         *
+         *  这里
          */
         try {
             $request->enableHttpMethodParameterOverride();
