@@ -32,7 +32,11 @@ require __DIR__.'/../bootstrap/autoload.php';
 | the responses back to the browser and delight our users.
 |
 */
-
+/**
+ * 首先是 服务容器的绑定
+ * 1.建立服务容器  Illuminate\Foundation\Application
+ * 2.绑定  'App\Http\Kernel'  到 'Illuminate\Contracts\Http\Kernel',
+ */
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
@@ -46,9 +50,32 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-
+/**
+ * 容器的如何使用
+ * 当call $app->make(Illuminate\Contracts\Http\Kernel::class); 的时候，实际上会建立App\Http\Kernel 的实例
+ * make  方法在 Container 里面
+ */
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
+
+/**
+ * 'Illuminate\Foundation\Bootstrap\DetectEnvironment',
+'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+'Illuminate\Foundation\Bootstrap\ConfigureLogging',
+'Illuminate\Foundation\Bootstrap\HandleExceptions',
+'Illuminate\Foundation\Bootstrap\RegisterFacades',
+'Illuminate\Foundation\Bootstrap\RegisterProviders',
+'Illuminate\Foundation\Bootstrap\BootProviders',
+ */
+/**
+ *  对上面的array 里面的多有的 文件进行配置、绑定
+ * example : 'Illuminate\Foundation\Bootstrap\RegisterProviders',  就会对所有的 config/app.php 里面的 providers 进行绑定
+ */
+/**
+ * App\Illuminate\kernel::handle  实际上会 call
+ *  Illuminate\Foundation\Http\Kernel::handle  它又会 call
+ *   Illuminate\Foundation\Http\Kernel::sendRequestThroughRouter -> bootstrap 方法
+ */
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );

@@ -10,7 +10,12 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
-
+/**
+ * 1. 注册绑定 Illuminate\Foundation\Application 容器
+ * 2. 注册绑定 EventServiceProvider and RoutingServiceProvider 这两个服务容器
+ * 3. 注册框架的所有的核心服务
+ * 4. 设置框架的基本文件地址信息   public_path  base_path ......
+ */
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
@@ -25,7 +30,13 @@ $app = new Illuminate\Foundation\Application(
 | incoming requests to this application from both the web and CLI.
 |
 */
-
+/**
+ * Create a new HTTP kernel instance.
+ * 这里是已字符串的形式  注册 singleton
+ * singleton 方法在 Illuminate\Container\Container 里面
+ * 它只是在 bind方法外面封装了一次
+ * bind('Illuminate\Contracts\Http\Kernel','App\Http\Kernel',true)
+ */
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
