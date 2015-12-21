@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Goods extends BaseModel
+class Goods extends BaseModels
 {
     protected $table = 'goods';
     protected $primaryKey = 'goods_id';

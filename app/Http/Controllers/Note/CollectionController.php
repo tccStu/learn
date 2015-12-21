@@ -1,0 +1,182 @@
+<?php
+
+namespace App\Http\Controllers\Note;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+
+class CollectionController extends Controller
+{
+    /**
+     * 自定义一个Collection 对象
+     * 并且，能够对这个对象进行 查询
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(){
+        /** @var TYPE_NAME $collection */
+        $collection = collect([
+            ['product' => 'Desk', 'price' => 200],
+            ['product' => 'Chair', 'price' => 100],
+            ['product' => 'Bookcase', 'price' => 150],
+            ['product' => 'Door', 'price' => 100],
+        ]);
+
+        print_r($collection->where('price',100));
+
+        return view('index');
+    }
+
+    /**
+     * @return mixed
+     * 对Collection 进行where 查询
+     */
+    public function where(){
+
+        $user = new User();
+        //这里得到的 $article 对象也是一个Collection 对象
+        //Illuminate\Database\Eloquent\Collection Object
+        $article = $user->find(1)->article;
+
+        //where 里面是一个给定的键值对的集合，且，只能是一个键值对的集合
+        //key/value
+        $article = $article->where('id',1);
+        print_r($article);
+
+        return view('index');
+    }
+
+
+    /**
+     *  map each filter 方法，都会对Collection 做一次遍历，并且，定义闭包函数
+     *
+     * map,each，filter 的区别
+     * 1 . 放回的结果类型区别，map看return 的值的类型，each，filter还是原来的item 的结构类型,
+     * 2 . 对条件不满足的item 的处理方式：map用null 来处理，而each对原来的值只是不做处理，filter直接不需要这部分item
+     * 3. 返回的数据长度：map,each 原来的数据长度，filter所有满足条件的数据的长度
+     */
+    public function map(){
+        echo "这里展示Map and  Each 方法\n";
+        $user = new User();
+        $article = $user->find(1)->article;
+
+        //print_r($article->toarray());
+
+        //一直执行到某个条件后，跳出循环，返回的是 return 的结果类型(这里是 ID)
+        //Illuminate\Database\Eloquent\Collection Object ( [items:protected] => Array ( [0] => 10 [1] => 20 [2] =>  [3] => ) )
+        $map = $article->map(function($item,$k){
+            //debug($val->id);
+            if($item->id > 4){
+                return false;
+            }else{
+                return $item->id * 10;
+            }
+
+        });
+        //print_r($map);
+
+        //得到的是一个Array()
+        $all = $article->all();
+        //print_r($all);
+
+        //一直执行到某个条件后，跳出循环,结果还是原来的结构,只是改变满足条件的item，返回所有的item
+        // Illuminate\Database\Eloquent\Collection Object ( [items:protected] => Array ( [0] => App\Models\Article Object (),[1]=>App\Models\Article Object),[2] => App\Models\Article Object (),[3]=>App\Models\Article Object))
+        $each = $article->each(function($item,$k){
+            //debug($item->id);
+            if($item->id > 4){
+                return false;
+            }else{
+                $item->id = $item->id * 10;
+            }
+        });
+
+        //print_r($each);
+
+
+        //debug($each->all());
+
+
+        //遍历article,返回满足条件的key--item,不满足条件的删除，但是索引没变
+        //
+        $filter = $article->filter(function($item){
+            debug($item->id);
+            return $item->id > 10;
+        });
+
+        debug($filter->count());
+        print_r($filter);
+
+        return view('index');
+    }
+
+
+    public function contains(){
+        $user = new User();
+        $article = $user->find(1)->article;
+
+        print_r($article);
+        //返回值 TRUE,FALSE,
+        //在 $article 集合中，title 键key，是否有 value 为 title222 的片
+        //$contains = $article->contains('title','title222');
+        //debug($contains);
+
+        //采用闭包函数，可以自定义条件
+        $contains = $article->contains(function($key,$val){
+            return $val->id > 16;
+        });
+
+        debug($contains);
+
+        return view('index');
+    }
+
+    public function math(){
+        $user = new User();
+        $article = $user->find(1)->article;
+
+        //平均数
+        $avg = $article->avg('click_num');//或者->avg();
+        print_r($avg);
+        $count = $article->count();
+        //print_r($article->toarray());
+
+        return view('index');
+    }
+
+    /**
+     * chunk 切片，每一组多少数据
+     * every 取整，偏移
+     * 这个也可以用在view 页面，比如对查询的结果展示，要进行分组，商品分类显示，并且分类展示的商品数量还不同
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
+    public function chunk(){
+        echo "这里展示Chunk and Every\n";
+
+        $user = new User();
+        $article = $user->find(1)->article;
+
+        //对现有的集合 进行切片，参数是每一组里面的数据个数，如果最后的一个不够，那就不够
+        //demo $collection 切片，并且每一组有3个，若果不够，就是剩下的
+        //$collection = collect([1, 2, 3, 4, 5, 6, 7]);
+        //切片后：[[1,2,3],[4,5,6],[1]]
+        $chunk = $article->chunk(3);
+
+        //print_r($chunk->toarray());
+
+        print_r($article);
+
+
+        //取得key能够整除4的所有key---value元素
+        //这里取得key：0,2，4,6.....
+        //$every = $article->every(2);
+
+        //取得key能够整除4的所有key+1---value元素
+        //这里取得的key:1,4,7,10,......
+        $every = $article->every(3,1);
+
+        debug($every->count());
+
+        return view('index');
+    }
+}

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Business extends BaseModel
+class Business extends BaseModels
 {
     protected $table = 'business';
     protected $primaryKey = 'id';

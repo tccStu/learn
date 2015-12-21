@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Images extends BaseModel
+class Images extends BaseModels
 {
     protected $table = 'image';
     protected $primaryKey = 'id';

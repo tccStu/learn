@@ -3,7 +3,7 @@
 namespace App\Models;
 
 
-class Articles extends BaseModel
+class Articles extends BaseModels
 {
     /**
      * @var string

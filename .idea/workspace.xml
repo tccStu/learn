@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7afb8e38-435d-4a42-a4eb-4022946d43e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Articles.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/BaseModels.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Business.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Goods.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Images.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Models/Roles.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/User.php" afterPath="$PROJECT_DIR$/app/Models/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Articles.php" afterPath="$PROJECT_DIR$/app/Models/Articles.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Business.php" afterPath="$PROJECT_DIR$/app/Models/Business.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Goods.php" afterPath="$PROJECT_DIR$/app/Models/Goods.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Images.php" afterPath="$PROJECT_DIR$/app/Models/Images.php" />
     </list>
     <ignored path="learn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,21 +28,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="RelationshipsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RelationshipsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Note/RelationshipsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67070216">
-              <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+            <state vertical-scroll-proportion="-14.125">
+              <caret line="77" column="7" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
               <folding>
                 <element signature="e#45#69#0#PHP" expanded="true" />
                 <element signature="e#483#720#0#PHP" expanded="true" />
                 <element signature="e#908#1180#0#PHP" expanded="true" />
                 <element signature="e#1266#1636#0#PHP" expanded="true" />
                 <element signature="e#1445#1526#2#PHP" expanded="true" />
+                <element signature="e#1823#1986#0#PHP" expanded="true" />
                 <element signature="e#2173#2337#0#PHP" expanded="true" />
                 <element signature="e#2580#2737#0#PHP" expanded="true" />
                 <element signature="e#2974#3310#0#PHP" expanded="true" />
                 <element signature="e#3547#3714#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollectionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Note/CollectionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.8125">
+              <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+              <folding>
+                <element signature="e#45#67#0#PHP" expanded="true" />
+                <element signature="e#316#723#0#PHP" expanded="true" />
+                <element signature="e#796#1169#0#PHP" expanded="true" />
+                <element signature="e#1481#3040#0#PHP" expanded="true" />
+                <element signature="e#3047#3546#0#PHP" expanded="true" />
+                <element signature="e#3552#3853#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Roles.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Roles.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/Roles.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.75">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.12348668">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="e#307#663#0#PHP" expanded="true" />
               </folding>
@@ -88,18 +103,48 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.4375">
-              <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+            <state vertical-scroll-proportion="-13.0625">
+              <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/database.php">
+      <file leaf-file-name="Articles.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Articles.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.3125">
-              <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Business.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Business.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.25">
+              <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Goods.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Goods.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3125">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Images.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Images.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.5">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,16 +159,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/Http/Controllers/BaseController.php" />
-        <option value="$PROJECT_DIR$/app/Models/Articles.php" />
-        <option value="$PROJECT_DIR$/app/Models/Business.php" />
-        <option value="$PROJECT_DIR$/app/Models/Goods.php" />
-        <option value="$PROJECT_DIR$/app/Models/Images.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/app/Models/BaseModels.php" />
         <option value="$PROJECT_DIR$/app/Models/Roles.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Note/RelationshipsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Note/CollectionController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Models/Articles.php" />
+        <option value="$PROJECT_DIR$/app/Models/Business.php" />
+        <option value="$PROJECT_DIR$/app/Models/Goods.php" />
+        <option value="$PROJECT_DIR$/app/Models/Images.php" />
       </list>
     </option>
   </component>
@@ -139,8 +185,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="26" />
-    <option name="y" value="43" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1696" />
     <option name="height" value="1026" />
   </component>
@@ -382,7 +428,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="26" y="43" width="1696" height="1026" extended-state="0" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -421,42 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Articles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3125">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-          <folding>
-            <element signature="e#366#447#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Business.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.25">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="14" />
-          <folding>
-            <element signature="e#140#273#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Goods.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.25">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Images.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.0625">
-          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -483,14 +493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.4375">
-          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.65625">
@@ -509,30 +511,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Roles.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Note/CollectionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.75">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state vertical-scroll-proportion="1.8125">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
-            <element signature="e#307#663#0#PHP" expanded="true" />
+            <element signature="e#45#67#0#PHP" expanded="true" />
+            <element signature="e#316#723#0#PHP" expanded="true" />
+            <element signature="e#796#1169#0#PHP" expanded="true" />
+            <element signature="e#1481#3040#0#PHP" expanded="true" />
+            <element signature="e#3047#3546#0#PHP" expanded="true" />
+            <element signature="e#3552#3853#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Note/RelationshipsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67070216">
-          <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+        <state vertical-scroll-proportion="-14.125">
+          <caret line="77" column="7" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
           <folding>
             <element signature="e#45#69#0#PHP" expanded="true" />
             <element signature="e#483#720#0#PHP" expanded="true" />
             <element signature="e#908#1180#0#PHP" expanded="true" />
             <element signature="e#1266#1636#0#PHP" expanded="true" />
             <element signature="e#1445#1526#2#PHP" expanded="true" />
+            <element signature="e#1823#1986#0#PHP" expanded="true" />
             <element signature="e#2173#2337#0#PHP" expanded="true" />
             <element signature="e#2580#2737#0#PHP" expanded="true" />
             <element signature="e#2974#3310#0#PHP" expanded="true" />
             <element signature="e#3547#3714#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.0625">
+          <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Articles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3125">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Business.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.25">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3125">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Images.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Roles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12348668">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <element signature="e#307#663#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
