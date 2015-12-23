@@ -29,7 +29,7 @@ class LoginMiddleware
      *    路由组 $router->group(['middleware' => 'auth.login'], function() { echo 'test'});
      *
      * 2. 在控制器中使用
-     *  在控制器方法中  调用 $this->middleware('auth.login', ['only' => 'update'])
+     *  只能在 __construct() 方法里面  调用 $this->middleware('auth.login', ['only' => 'update'])
      *
      */
 
@@ -46,6 +46,11 @@ class LoginMiddleware
         /**
          *
          * Closure（匿名函数）用来处理通过中间件下一步需要执行的函数。
+         *
+         * 路由参数的形式传递的参数，不是request 请求的数据
+         * 'article/view/{id}'，/article/view/125，  这里的id =125,就不是request对象的请求参数
+         *
+         * http://tcc.com/article/view/125?name=tcc  只有 ？后面的参数  name=tcc 才是request对象的请求参数
          */
         //业务逻辑处理
 

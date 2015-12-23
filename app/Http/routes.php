@@ -10,6 +10,25 @@ Route::controllers([
 ]);
 get('home/index','BaseController@index');
 
+//get('article/index','Note\ArticlesController@index');
+
+//调用Middleware 的方法，控制器的__construct() 里面  或 路由
+//get('article/view/{id}','Note\ArticlesController@view');
+//get('article/view/{id}','Note\ArticlesController@view')->middleware('article.view');
+
+//路由组 在group 里面  prefix代表路由前缀,  as代表别名前缀
+Route::group(['prefix'=>'article','as=>article.','middleware'=>'article.view'], function (){
+        Route::get('index',['as'=>'index','uses'=>'Note\ArticlesController@index']);
+        //'url'=>article/index,  'as'=>'article.index'
+        Route::get('view/{id}',['as'=>'view','uses'=>'Note\ArticlesController@view']);
+        //'as'=>'article.view'
+});
+
+
+//路由参数 ？代表可选，需要加入默认值
+get('param/{id?}',function($id = 1){
+    return 'param is id and id = '.$id;
+});
 
 //Relationships
 //一对多
