@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Events\Event;
+use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
@@ -24,15 +25,24 @@ class LoginEvent extends Event
      */
 
 
+    public $_user;
+    public $status;
+    public $data;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user,$status)
     {
-        //
+        $user['username'] = $user['id'].'testname';
+        $this->_user = $user;
+        $this->data['user'] = $this->_user;
+        $this->data['status'] = $status ? 0:1;
+        $this->status = $status ? 0:1;
     }
+
 
     /**
      * Get the channels the event should be broadcast on.
@@ -42,5 +52,16 @@ class LoginEvent extends Event
     public function broadcastOn()
     {
         return [];
+    }
+
+
+    /**
+     * 被广播的数据
+     *默认情况下， Event 中的所有public属性都会被序列化后广播。上面的例子中就是 $user_id 这个属性。你也可以使用 broadcastWith      *这个方法，明确的指出要广播上面数据。
+     *
+     * @return array
+     */
+    public function broadcastWith(){
+        return ['data' => $this->data];
     }
 }

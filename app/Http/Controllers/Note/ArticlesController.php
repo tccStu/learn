@@ -9,7 +9,9 @@
 namespace app\Http\Controllers\Note;
 
 
+use App\Events\LoginEvent;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -29,6 +31,14 @@ class ArticlesController extends Controller
         /*debug($request->name);
         debug($request->all());
         debug($request->att);*/
+
+
+        $user = User::findOrFail(1);
+        $status = 1;
+        event(new LoginEvent($user,$status));
+        debug($user['username']);
+        //debug('-------------------------------------');
+        debug($status);
         return view('articles.view');
     }
 }

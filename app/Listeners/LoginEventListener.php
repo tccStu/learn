@@ -21,11 +21,19 @@ class LoginEventListener
     /**
      * Handle the event.
      *
-     * @param  SomeEvent  $event
+     * @param  LoginEvent  $event
      * @return void
      */
     public function handle(LoginEvent $event)
     {
+        //$data = $event->broadcastWith();
+        $user = $event->_user;
+         debug($user);
+
         debug('in LoginEvent the LoginEventListen handle method');
+
     }
+
+
+
 }

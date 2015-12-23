@@ -24,7 +24,7 @@ class ArticleViewMiddleware
          * 在控制器里 也是同样的情况
          */
         //tcc
-        debug($request->name);
+        //debug($request->name);
 
        if(!$request->has('name')){
            //return redirect('article/index');
@@ -33,16 +33,16 @@ class ArticleViewMiddleware
            $request->name = $request->name.' add tcc1015';
        }
         //name is tcc and tcc1015
-        debug('name is '.$request->name);
+        //debug('name is '.$request->name);
 
         $request->att = 'attributes';
 
         //attributes
-        debug($request->att);
+        //debug($request->att);
 
         $data = $request->all();
         //['name'=>'tcc','no'=>55555]
-        debug($data);
+        //debug($data);
 
 
 
@@ -51,18 +51,18 @@ class ArticleViewMiddleware
 
         if($validate->fails()){
             $msg = $validate->errors()->all();
-            debug($msg);
+            //debug($msg);
         }
 
         // String
         //用户名 长度必须在 8 和 20 之间
         $first = $validate->errors()->first('name');
-        debug($first);
+        //debug($first);
 
         // Array
         // [0=>'电子邮件 不能为空']
         $email = $validate->errors()->get('email');
-        debug($email);
+        //debug($email);
 
         // 判断是否 某个字段 的输入请求 存在错误
         if($validate->errors()->has('email')){
