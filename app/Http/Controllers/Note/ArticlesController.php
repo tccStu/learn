@@ -10,6 +10,7 @@ namespace app\Http\Controllers\Note;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -23,8 +24,11 @@ class ArticlesController extends Controller
     }
 
 
-    public function view($id){
+    public function view(Request $request,$id){
 
+        /*debug($request->name);
+        debug($request->all());
+        debug($request->att);*/
         return view('articles.view');
     }
 }
