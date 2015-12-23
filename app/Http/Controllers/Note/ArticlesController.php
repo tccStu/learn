@@ -35,10 +35,11 @@ class ArticlesController extends Controller
 
         $user = User::findOrFail(1);
         $status = 1;
-        event(new LoginEvent($user,$status));
-        debug($user['username']);
+        $ev = event(new LoginEvent($user,$status));
+        //debug($user['username']);
         //debug('-------------------------------------');
-        debug($status);
+        //debug($status);
+        debug($ev);
         return view('articles.view');
     }
 }

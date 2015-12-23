@@ -19,10 +19,9 @@ class LoginEventListener
     }
 
     /**
-     * Handle the event.
-     *
-     * @param  LoginEvent  $event
-     * @return void
+     * Handle the event
+     * @param LoginEvent $event
+     * @return int
      */
     public function handle(LoginEvent $event)
     {
@@ -30,8 +29,9 @@ class LoginEventListener
         $user = $event->_user;
          debug($user);
 
+        $status = 0;
         debug('in LoginEvent the LoginEventListen handle method');
-
+        return  $status;
     }
 
 
