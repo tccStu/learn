@@ -11,8 +11,11 @@ namespace app\Http\Controllers\Note;
 
 use App\Events\LoginEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Articles;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ArticlesController extends Controller
 {
@@ -22,6 +25,7 @@ class ArticlesController extends Controller
     }
 
     public function index(){
+
         return view('articles.index');
     }
 
@@ -36,10 +40,11 @@ class ArticlesController extends Controller
         $user = User::findOrFail(1);
         $status = 1;
         $ev = event(new LoginEvent($user,$status));
-        //debug($user['username']);
-        //debug('-------------------------------------');
-        //debug($status);
+
         debug($ev);
         return view('articles.view');
     }
+
+
+
 }

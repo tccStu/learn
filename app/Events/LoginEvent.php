@@ -26,8 +26,7 @@ class LoginEvent extends Event
 
 
     public $_user;
-    public $status;
-    public $data;
+    public $_status;
 
     /**
      * Create a new event instance.
@@ -36,11 +35,8 @@ class LoginEvent extends Event
      */
     public function __construct(User $user,$status)
     {
-        $user['username'] = $user['id'].'testname';
         $this->_user = $user;
-        $this->data['user'] = $this->_user;
-        $this->data['status'] = $status ? 0:1;
-        $this->status = $status ? 0:1;
+        $this->_status = $status;
     }
 
 

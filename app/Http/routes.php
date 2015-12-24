@@ -67,5 +67,30 @@ get('c/math','Note\CollectionController@math');
 //对Collection切片，分组
 get('c/chunk','Note\CollectionController@chunk');
 
-
 get('c/contains','Note\CollectionController@contains');
+
+
+/* ***********************************************    Eloquent    ********************************* */
+//groupBy
+get('e/get/group','Note\EloquentController@getGroupBy');
+
+get('e/group/get','Note\EloquentController@groupByGet');
+
+//attributes 属性值得设置
+get('e/attr','Note\EloquentController@attribute');
+
+//cast 属性 数据类型的 设置
+get('e/cast','Note\EloquentController@cast');
+
+//date 日期字段的统一管理 格式 Carbon
+get('e/date','Note\EloquentController@dates');
+
+//hidden  结果集中被隐藏的 字段，只有结果集是 Array , Json 的时候才会隐藏
+get('e/hidden','Note\EloquentController@hidden');
+
+//批量修改  fillable ,guard
+get('e/guard','Note\EloquentController@guard');
+
+
+get('mail','Note\MailController@index');
+
