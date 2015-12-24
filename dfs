@@ -1,0 +1,184 @@
+[33mcommit 2026b89987bf64d83bd0adaf7631a34b247b8a20[m
+Merge: 13636ef d88291f
+Author: tccLaravel <527293671@qq.com>
+Date:   Thu Dec 24 09:24:14 2015 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #	.idea/workspace.xml
+
+[33mcommit 13636ef64823a115ca063aa7d15326f5ce3da64d[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Thu Dec 24 09:16:32 2015 +0800
+
+    test
+    
+    test
+
+[33mcommit d88291f6649001d72d116aab276c9c3d0838f31a[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Wed Dec 23 23:28:22 2015 +0800
+
+    Event
+    
+    event 事件监听后的返回值  可以在 监听的 handle 方法里面返回 ，框架本身带有的注解是返回的 void  这里误导了
+
+[33mcommit 524b40e9de8c53a48200800c78ce1849080a6be8[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Wed Dec 23 17:32:17 2015 +0800
+
+    Event
+    
+    event 事件 参数  对主逻辑参数的影响  没解决
+
+[33mcommit a0b9a59f0ba363c8bebe5325cc0484a0c3f9acec[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Wed Dec 23 15:18:06 2015 +0800
+
+    validator
+    
+    加入了验证规则 ，错误信息的返回 、处理
+
+[33mcommit f216bba4161a5d342cd8105848cd4cb47fe208d1[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Wed Dec 23 14:56:16 2015 +0800
+
+    middleware request data
+    
+    在 $request里 更改、或者添加了其他的键值对 key/value后，
+    $request->all()，方法是得不到修改、或者添加的键值对的键或者值，只有单独的反问某个键、才会取得更改、添加键的值
+    也就是说 $request->all(),始终得到的是 最原始的 请求数据，不会因为中途数据的修改而 改变
+    在控制器里 也是同样的情况
+
+[33mcommit 208d3b9e85baad26aa7dc11871ee4381ea3dabe1[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Wed Dec 23 14:06:45 2015 +0800
+
+    middleware and route group and route param
+    
+    中间件的使用demo ,特别注意在控制器中调用的话，只能写在__construct
+    路由组的一些基本写法，标签
+
+[33mcommit 138e59a399b5df6af11d0506c5c916fcff846528[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Tue Dec 22 09:12:50 2015 +0800
+
+    同步
+    
+    测试同步
+
+[33mcommit d93942c8f44c334bbac6236c1ae9af7d8a7a4063[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 23:02:33 2015 +0800
+
+    test
+    
+    test on other computer
+
+[33mcommit ffeddcde83f53ef2933e9c8a2003e08ac5c2a034[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 17:22:40 2015 +0800
+
+    Event and Listen
+    
+    1.生成Event事件
+    *         php artisan event:generate,会默认一起 生成事件，监听，以及绑定文件
+    *         php artisan make:event LoginEvent，会单独生成  LoginEvent 事件文件
+    *  2.生成Listen监听
+    *        php artisan handle:event LoginEventListen
+    --event="LoginEvent",会生成 LoginEventListen 监听文件，并且把 LoginEvent 事件 注入到
+    handle 方法里面
+    *
+    *  3.绑定Event事件 与 Listen监听
+    *        app\Providers\EventServiceProvider::listen
+    *
+    *  4.Event::fire(LoginEvent());
+
+[33mcommit 51f58fde30007e7f44f7fc8e126f8975b4b1c72a[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 16:51:20 2015 +0800
+
+    404
+    
+    404 页面
+
+[33mcommit ef0afaffbd96eb778b5d43972f0d018e060db036[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 16:50:49 2015 +0800
+
+    Middleware
+    
+    MiddleWare就是在请求发送之后到应用程序响应之前所完成的一系列业务逻辑。
+    看 app\http\middleware\LoginMiddleware
+
+[33mcommit 525c4b2e88b9d362338d255606ce922bd586b2c2[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 15:02:53 2015 +0800
+
+    Collection
+    
+    一小部分 关于集合的方法例子
+    还有一个BUG  model 继承 BaseModels 的名字写错了
+
+[33mcommit 997dc820fc44e94cd1b96e80237dfd9eadd99018[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Mon Dec 21 14:42:49 2015 +0800
+
+    Relationships
+    
+    belongs  belongstoMany  hasMany morphMany .....
+
+[33mcommit cb2653834849cd48943cdce50352dff70d5873b7[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 23:43:19 2015 +0800
+
+    js  and css
+
+[33mcommit a1c995666e4a0b58100e0262c97598ca304dcf52[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 23:41:38 2015 +0800
+
+    js and css
+
+[33mcommit 971cc4d9a6285fa4b2c8326dcd592bd26c734e69[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 23:33:00 2015 +0800
+
+    Auth
+
+[33mcommit bbd9e1acd3d4e81776de30d3cb87343b4d913352[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 23:28:30 2015 +0800
+
+    Auth
+
+[33mcommit 70b1c31d4367636058d36a642c4249c08b84bbc4[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 19:22:04 2015 +0800
+
+    about laravel 核心容器 笔记  vendor 文件夹里面的文件
+
+[33mcommit 02781084419d598dd719bc0a8402752ee99d46a1[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 19:17:42 2015 +0800
+
+    about laravel 核心容器 笔记  vendor 文件夹里面的文件
+
+[33mcommit 69634090f7ae741ab2e80dd8311ef5d9aba3df69[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 18:55:55 2015 +0800
+
+    add  laravel vendor
+
+[33mcommit 84a31c8f785bf0335741683340fcad87b65f7e01[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Sun Dec 20 18:44:01 2015 +0800
+
+    about laravel 核心容器  笔记
+
+[33mcommit 29a0cfc8f814dcb338a5116c2ee5e219900a46d6[m
+Author: tccLaravel <527293671@qq.com>
+Date:   Fri Dec 18 22:04:09 2015 +0800
+
+    Initial commit
