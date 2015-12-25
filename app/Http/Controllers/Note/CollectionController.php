@@ -9,18 +9,31 @@ use App\Models\User;
 class CollectionController extends Controller
 {
     /**
+     * @var \Illuminate\Support\Collection
+     *
+     * 这里面的 所有的方法里面，如果调用 闭包函数的话，一定要注意 param ，以及 param 的顺序
+     *
+     */
+    protected $collection;
+    public function __construct()
+    {
+        $this->collection = collect([
+            ['product' => 'Desk', 'price' => 200],
+            ['product' => 'Chair', 'price' => 100],
+            ['product' => 'Bookcase', 'price' => 150],
+            ['product' => 'Door', 'price' => 100],
+        ]);
+
+    }
+
+    /**
      * 自定义一个Collection 对象
      * 并且，能够对这个对象进行 查询
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
         /** @var TYPE_NAME $collection */
-        $collection = collect([
-            ['product' => 'Desk', 'price' => 200],
-            ['product' => 'Chair', 'price' => 100],
-            ['product' => 'Bookcase', 'price' => 150],
-            ['product' => 'Door', 'price' => 100],
-        ]);
+        $collection = $this->collection;
 
         print_r($collection->where('price',100));
 
@@ -112,20 +125,39 @@ class CollectionController extends Controller
 
     public function contains(){
         $user = new User();
-        $article = $user->find(1)->article;
-
-        print_r($article);
+        //$article = $user->find(1)->article;
+        $article = collect([
+            ['id'=>1,'title'=>'title'],
+            ['id'=>2,'title'=>'title2'],
+            ['id'=>3,'title'=>'title3'],
+            ['id'=>4,'title'=>'title4'],
+            ['id'=>5,'title'=>'title5'],
+        ]);
+        //print_r($article);
         //返回值 TRUE,FALSE,
         //在 $article 集合中，title 键key，是否有 value 为 title222 的片
         //$contains = $article->contains('title','title222');
         //debug($contains);
 
         //采用闭包函数，可以自定义条件
+        /**
+         * 实际上执行
+         * foreach ($array as $key => $value) {
+                if (call_user_func($callback, $key, $value)) {
+                    return $value;
+                }
+             }
+         *
+         * 这里的 $array 就是 $article，$callback 就是闭包函数
+         *
+         * 它返回的就是第一个满足条件的值，只不过在contains(),方法外面又封装了一层，最后的结果才是BOOl类型
+         *
+         */
         $contains = $article->contains(function($key,$val){
-            return $val->id > 16;
+            return $val['id']> 5;
         });
 
-        debug($contains);
+        //debug($contains);
 
         return view('index');
     }
@@ -134,11 +166,19 @@ class CollectionController extends Controller
         $user = new User();
         $article = $user->find(1)->article;
 
+        debug($article->toarray());
         //平均数
         $avg = $article->avg('click_num');//或者->avg();
-        print_r($avg);
+        debug($avg);
+
         $count = $article->count();
-        //print_r($article->toarray());
+        debug($count);
+
+        $min = $article->min('click_num');
+        debug($min);
+
+        $max = $article->max('click_num');
+        debug($max);
 
         return view('index');
     }
@@ -179,4 +219,184 @@ class CollectionController extends Controller
 
         return view('index');
     }
+
+
+    /**
+     * 两个集合的差集，集合数据只能是一维形式，不能是多维的
+     * $collectOne->diff($collectionTwo);
+     *
+     *  结果是：存在集合 $collectOne 中，并且不存在 $collectionTwo 的一个集合
+     *
+     *  对应的： 两个集合的 交集
+     *
+     */
+    public function diff(){
+        $others = collect([
+            ['product' => 'Desk', 'price' => 200],
+            ['product' => 'book', 'price' => 10],
+            ['product' => 'shop', 'price' => 20],
+            ['product' => 'goods', 'price' => 100],
+        ]);
+
+        //debug($this->collection);
+        //多维 执行不了  报错
+        //$diff = $this->collection->diff($other);
+
+        // 差集
+        $collection = collect([1, 2, 3, 4, 5]);
+        $other = collect([2, 4, 6, 8]);
+        //一维可以执行
+        $diff = $collection->diff($other);
+
+        debug($diff);
+
+        // 交集
+        $intersect = $collection->intersect($other);
+        debug($intersect);
+
+        // 并集  合并后 的集合 是不管里面有没有的重复元素的，这是集合的定义决定的
+        $merge = $collection->merge($other);
+
+        $merge = $this->collection->merge($others);
+        debug($merge);
+
+        return view('index');
+    }
+
+
+    /**
+     *  取得满足 filter 条件的 集合
+     *  filter 方法实际上是 走的 array_filter($this->items, $callback) 这个数组底层函数
+     *
+     */
+    public function filter(){
+
+        /**
+         * array_filter($this->collection, function(){})
+         */
+        $filter = $this->collection->filter(function($item){
+            return $item['price'] == 100;
+        });
+
+        debug($filter);
+
+        return view('index');
+    }
+
+
+    /**
+     *  取得 集合中 满足 闭包条件的  第一个元素 first
+     *  首先 call  Collection 的 first method
+     *  first method call Arr::first($this->items, $callback, $default);
+     *  它返回的是一个值
+     *
+     *  对应的
+     * 取得 集合中 满足 闭包条件的  最后一个元素 last
+     */
+    public function first(){
+
+        debug($this->collection);
+
+        //返回第一个满足条件的 $value
+        $first = $this->collection->first(function($key,$value){
+            return $value['price'] == 100;
+        });
+
+        debug($first);
+
+        $last = $this->collection->last(function($key,$value){
+            return $value['price'] == 100;
+        });
+
+       debug($last);
+
+        //这里就直接返回第一个集合元素
+        $first = $this->collection->first();
+
+        debug($first);
+
+        return view('index');
+    }
+
+
+
+    /**
+     * 反转 集合元素的 键值对 key/value 变成 value/key
+     * 这里的集合元素 只能是一维的，并且 只支持 string and integer
+     */
+    public function flip(){
+        $collection = collect(['name' => 'taylor', 'framework' => 'laravel']);
+
+        $flip = $collection->flip();
+
+        debug($flip);
+
+        return view('index');
+    }
+
+    /**
+     * 分页
+     */
+    public function forPage(){
+
+        $collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+        /**
+         *  forPage($page, $perPage)
+         *  $page 当前的页数
+         *  $perPage 每页的数量
+         */
+        $page = $collection->forPage(3,2);
+
+        debug($page);
+
+        debug($page->all());
+
+        return view('index');
+    }
+
+
+    /**
+     *
+     *  集合元素 转换成 字符串
+     *
+     * implode
+     *
+     */
+    public function implode(){
+
+        $val = $this->collection->map(function($val,$key){
+            return $val['price'];
+        });
+
+        debug($val);
+
+        //Desk,Chair,Bookcase,Door
+        $implode = $this->collection->implode('product',',');
+        debug($implode);
+
+        //1-2-3-4-5
+        $implode = collect([1, 2, 3, 4, 5])->implode('-');
+        debug($implode);
+
+        return view('index');
+
+    }
+
+    /**
+     * 检索 key值，是这个元素
+     * 摘取 某个字段的值，生成一个新的集合
+     */
+    public function pluck(){
+        $user = new User();
+        $article = $user->find(1)->article;
+
+        //pluck($value, $key = null)
+        $pluck = $article->pluck('title','id');
+
+        debug($pluck);
+
+        return view('index');
+    }
+
 }

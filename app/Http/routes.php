@@ -52,7 +52,7 @@ Route::any('r/pre/load',['uses'=>'Note\RelationshipsController@preLoad']);
 
 
 
-//Collection 集合
+/*************************************   Collection 集合   ****************************************/
 get('c/index','Note\CollectionController@index');
 
 //Eloquent 也是一个Collection对象,并且能够进行where key-value查询
@@ -61,13 +61,40 @@ get('c/where','Note\CollectionController@where');
 //map 方法，是对Collection 的一次遍历，并且，定义闭包函数，对遍历进行处理
 get('c/map','Note\CollectionController@map');
 
-//Collection 数学方法  avg sum  min  max  chunk .....
+//Collection 数学方法  avg sum  min  max   .....
 get('c/math','Note\CollectionController@math');
 
 //对Collection切片，分组
 get('c/chunk','Note\CollectionController@chunk');
 
+//
 get('c/contains','Note\CollectionController@contains');
+
+// diff        两个一维集合的差集
+// intersect   两个一维集合的 交集
+// merge       两个集合的 并集,这里不管一维 、二维....都是可以的
+get('c/diff','Note\CollectionController@diff');
+
+
+// 取得  集合中 满足 闭包条件的所有元素的集合
+get('c/filter','Note\CollectionController@filter');
+
+// first 取得 集合中 满足 闭包条件的  第一个元素
+// last 取得 集合中 满足 闭包条件的  最后一个元素
+get('c/first','Note\CollectionController@first');
+
+// 反转 集合元素的 键值对 key/value 变成 value/key
+get('c/flip','Note\CollectionController@flip');
+
+// 对集合分页
+get('c/page','Note\CollectionController@forPage');
+
+//
+get('c/implode','Note\CollectionController@implode');
+
+// 摘取 某个字段的值，生成一个新的集合
+get('c/pluck','Note\CollectionController@pluck');
+
 
 
 /* ***********************************************    Eloquent    ********************************* */
@@ -91,6 +118,8 @@ get('e/hidden','Note\EloquentController@hidden');
 //批量修改  fillable ,guard
 get('e/guard','Note\EloquentController@guard');
 
+//有奖发送，事件发送
+get('mail/event','Note\MailController@index');
 
-get('mail','Note\MailController@index');
+get('mail/send','Note\MailController@sendMail');
 

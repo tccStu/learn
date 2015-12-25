@@ -32,6 +32,7 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
      */
     public function __construct($items = [])
     {
+        //debug($items);
         $this->items = is_array($items) ? $items : $this->getArrayableItems($items);
     }
 
@@ -100,15 +101,22 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     public function contains($key, $value = null)
     {
         if (func_num_args() == 2) {
+            //debug('in func_num_args');
             return $this->contains(function ($k, $item) use ($key, $value) {
                 return data_get($item, $key) == $value;
             });
         }
 
         if ($this->useAsCallable($key)) {
+            /**
+             * 如果走这个条件的话，那么$key 就是一个闭包函数
+             */
+            //debug($key);
+            //debug('in Callable');
             return ! is_null($this->first($key));
         }
 
+        //debug('not in');
         return in_array($key, $this->items);
     }
 
@@ -243,8 +251,10 @@ class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate
     public function first(callable $callback = null, $default = null)
     {
         if (is_null($callback)) {
+            //debug('first in null');
             return count($this->items) > 0 ? reset($this->items) : null;
         }
+        //debug('$callback is not null');
 
         return Arr::first($this->items, $callback, $default);
     }

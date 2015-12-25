@@ -146,6 +146,9 @@ class Arr
      * @param  callable  $callback
      * @param  mixed  $default
      * @return mixed
+     *
+     * 返回第一个满足闭包函数的 value
+     * 如果没有一个满足的 就返回 null
      */
     public static function first($array, callable $callback, $default = null)
     {
