@@ -118,8 +118,21 @@ get('e/hidden','Note\EloquentController@hidden');
 //批量修改  fillable ,guard
 get('e/guard','Note\EloquentController@guard');
 
-//有奖发送，事件发送
+//查询作用域 scope
+get('e/scope','Note\EloquentController@scope');
+
+//模型事件
+get('e/model/event','Note\EloquentController@modelEvent');
+
+
+
+
+
+/*************************************   邮件发送   ***********************************************/
+//邮件发送，事件发送
 get('mail/event','Note\MailController@index');
 
 get('mail/send','Note\MailController@sendMail');
+
+
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Mockery\Exception;
 
 
 /**
@@ -181,6 +182,43 @@ class EloquentController extends Controller
         $re = $row->update($data);
 
         debug($re);
+
+        return view('index');
+    }
+
+
+    /**
+     * 查询作用域 scope
+     *
+     * 实际就是对一些查询条件的封装
+     *
+     */
+    public function scope(){
+        $obj = new Articles();
+        //这里的 popular 方法，实际上是 scopePopular 方法
+        $popular = $obj->popular()->orderBy('id')->get();
+
+        debug($popular);
+
+        return view('index');
+    }
+
+    public function modelEvent(){
+        $data = ['title'=>'Model Event',
+            'content'=>'the model event can be declaration in model boot method',
+        'user_id'=>3,
+        'click_num'=>99];
+
+        try{
+            Articles::create($data);
+
+        }catch(Exception $e){
+            debug($e->getMessage());
+        }
+
+        $obj = Articles::create($data);
+
+        debug($obj->toArray());
 
         return view('index');
     }
