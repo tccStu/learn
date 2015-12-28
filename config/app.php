@@ -148,6 +148,7 @@ return [
         Illuminate\Html\HtmlServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
@@ -199,6 +200,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'From'      => Illuminate\Html\FormFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
     ],
 
 ];

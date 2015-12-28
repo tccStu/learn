@@ -134,5 +134,5 @@ get('mail/event','Note\MailController@index');
 
 get('mail/send','Note\MailController@sendMail');
 
-
-
+/*************************************  二维码     ***********************************************/
+get('qc/index','Note\QrCodeController@index');
