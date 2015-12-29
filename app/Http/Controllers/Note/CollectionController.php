@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Note;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Articles;
 use App\Models\User;
 
 class CollectionController extends Controller
@@ -185,8 +184,8 @@ class CollectionController extends Controller
     }
 
     /**
-     * chunk 切片，分组，每一组多少数据
-     * every 取整，偏移，取得特定的某些 元素的数据 集合
+     * chunk 切片，每一组多少数据
+     * every 取整，偏移
      * 这个也可以用在view 页面，比如对查询的结果展示，要进行分组，商品分类显示，并且分类展示的商品数量还不同
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
@@ -197,20 +196,15 @@ class CollectionController extends Controller
         $user = new User();
         $article = $user->find(1)->article;
 
-        //对现有的集合 进行切片，分组，参数是每一组里面的数据个数，如果最后的一个不够，那就不够
+        //对现有的集合 进行切片，参数是每一组里面的数据个数，如果最后的一个不够，那就不够
         //demo $collection 切片，并且每一组有3个，若果不够，就是剩下的
         //$collection = collect([1, 2, 3, 4, 5, 6, 7]);
         //切片后：[[1,2,3],[4,5,6],[1]]
         $chunk = $article->chunk(3);
 
-        //这种方法也可以取得所需要的数据，但是这个是对数据库的查询分组，这样就会查询很多次
-        //上面的方法只查询一次，但下面的方法查询的 N 次
-        /*$chunk = Articles::chunk(3,function($articles){
-            foreach($articles as $item){
-                debug($item->id);
-            }
-        });
-        print_r($chunk);*/
+        //print_r($chunk->toarray());
+
+        print_r($article);
 
 
         //取得key能够整除4的所有key---value元素

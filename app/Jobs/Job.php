@@ -8,7 +8,7 @@ abstract class Job
 {
     /*
     |--------------------------------------------------------------------------
-    | Queueable Jobs  执行任务队列
+    | Queueable Jobs
     |--------------------------------------------------------------------------
     |
     | This job base class provides a central location to place any logic that

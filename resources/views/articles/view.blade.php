@@ -17,7 +17,6 @@
                 <label>content:</label>
                 <input class="" type="text" name="content" value="{{$article['content'] or 'default content'}}">
             </div>
-
         </form>
 
     </div>

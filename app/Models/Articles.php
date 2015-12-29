@@ -20,17 +20,6 @@ class Articles extends BaseModels
      */
     protected $hidden = ['click_num'];
 
-
-    /**
-     *  $guarded $fillable 属性只是在 Eloquent 的 create 方法时才有用，save 的时候是没用的
-     *
-     *  批量赋值的英文名称是Mass Assignment，所谓的批量赋值是指当我们将一个数组发送到模型类用于创建新的模型实例的时候（通常是表单请求数据）
-     *
-     * 那么如果我们确实想要修改定义在$guarded中的属性怎么办？答案是使用save方法。
-     *
-     */
-
-
     /**
      *
      * 这两个字段的值，不能被批量修改
@@ -49,7 +38,6 @@ class Articles extends BaseModels
     //protected $with = ['User'];
 
     //public $timestamps = false;
-
 
     /**
      * The attributes that should be mutated to dates.

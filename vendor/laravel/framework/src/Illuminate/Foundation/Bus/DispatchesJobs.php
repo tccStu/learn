@@ -7,7 +7,6 @@ use ArrayAccess;
 trait DispatchesJobs
 {
     /**
-     * 把 任务 分发 到 它对应的 handle 去
      * Dispatch a job to its appropriate handler.
      *
      * @param  mixed  $job
