@@ -38,13 +38,13 @@ class LoginEventListener
         $pathToFile = 'F:\wamp\www\test.php';
         $image = 'F:\wamp\www\123.jpg';
         $theme = 'Theme'.rand(1000,1000000);
-        $data = ['username'=>$user->username,'email'=>'799658891@qq.com','image'=>$image];
+        $data = ['username'=>$user->username,'email'=>'527293671@qq.com','image'=>$image];
         $mail = Mail::send('email.remind', ['user' => $data], function ($m) use ($data,$pathToFile,$theme) {
             $m->from(env('MAIL_USERNAME'), 'Application');
 
             $m->to($data['email'], $data['username'])->subject($theme);
 
-            $m->attach($pathToFile);
+            //$m->attach($pathToFile);
         });
 
 

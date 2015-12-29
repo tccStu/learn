@@ -203,22 +203,74 @@ class EloquentController extends Controller
         return view('index');
     }
 
+
+    /**
+     *  模型事件: 当模型 增、删、改 的时候，除了执行本该执行的 增、删、改 ，还执行一些其他的事情
+     *
+     *  Eloquent 中 create 方法 与 save  方法的 却别  在于 属性 的  黑白 名单 guard ，fillable
+     *
+     */
     public function modelEvent(){
         $data = ['title'=>'Model Event',
             'content'=>'the model event can be declaration in model boot method',
         'user_id'=>3,
         'click_num'=>99];
 
-        try{
+        /*try{
             Articles::create($data);
 
         }catch(Exception $e){
             debug($e->getMessage());
-        }
+        }*/
 
+
+        /**
+         *  由于 user_id 是 guard 属性，所以，只能使用 save 方法保存
+         *
+         * 也就是说，如果一个 模型 里面存在 保护字段，并且 创建 模型的 时候用 create 方法的话，那么需要执行两次 sql 语句 ，一条insert ，一条update
+         *
+         *  但是 如果 创建 模型的  时候  用的 是 save 方法的话   就不用管 在模型中 是否存在 黑 白 名单，所有的都一起 insert 进去
+         */
         $obj = Articles::create($data);
+        debug($obj->toArray());
+
+
+        $obj->user_id = 3;
+        $obj->status = 1;
+        $obj->save();
 
         debug($obj->toArray());
+
+
+
+        $obj = new Articles();
+        $obj->title = 'Model Event';
+        $obj->content = 'save content';
+        $obj->user_id = 8;
+        $obj->status = 6;
+        $obj->click_num = 19;
+
+        $re = $obj->save();
+        if($re){
+            debug('save success');
+        }else{
+            debug('save fail');
+        }
+
+        return view('index');
+    }
+
+    public function softDel(){
+
+        $obj = Articles::find(29);
+
+        $obj->delete();
+
+        debug($obj);
+
+        $obj->trashed();
+
+        debug($obj);
 
         return view('index');
     }

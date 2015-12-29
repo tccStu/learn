@@ -22,6 +22,8 @@ Route::group(['prefix'=>'article','as=>article.','middleware'=>'article.view'], 
         //'url'=>article/index,  'as'=>'article.index'
         Route::get('view/{id}',['as'=>'view','uses'=>'Note\ArticlesController@view']);
         //'as'=>'article.view'
+        Route::get('job/{id}',['as'=>'view','uses'=>'Note\ArticlesController@jobView']);
+
 });
 
 
@@ -121,8 +123,11 @@ get('e/guard','Note\EloquentController@guard');
 //查询作用域 scope
 get('e/scope','Note\EloquentController@scope');
 
-//模型事件
+//模型事件, 模型黑白名单，create 与 save 的区别
 get('e/model/event','Note\EloquentController@modelEvent');
+
+// 软删除 ，表里面需要存在 deleted_at 字段
+get('e/soft/del','Note\EloquentController@softDel');
 
 
 
