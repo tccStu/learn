@@ -35,6 +35,7 @@ class LoginEvent extends Event
      */
     public function __construct(User $user,$status)
     {
+
         $this->_user = $user;
         $this->_status = $status;
     }
