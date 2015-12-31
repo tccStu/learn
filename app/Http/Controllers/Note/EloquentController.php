@@ -275,4 +275,33 @@ class EloquentController extends Controller
         return view('index');
     }
 
+
+    /**
+     * 内联查询
+     *
+     */
+    public function innerWhere(){
+        $condition = ['TCC','tmm','tangmm'];
+
+        $obj = new Articles();
+
+        /**
+         * 在循环 内联 查询时，有初始查询条件，与没有初始查询条件的 巨大差异
+         *  无初始查询条件：最后的sql 语句 就是 循环里面的 每次sql 语句
+         *  有初始条件： 最后的sql 语句 是，循环里面的 所有条件的 每次拼接
+         */
+        //$obj = $obj->where('status',1);
+
+        foreach ($condition as $value) {
+
+            $total=$obj->where(function($query) use ($value){
+
+                return  $query->where('id',$value)->orWhere('content',$value);
+
+            })->count();
+
+        }
+
+    }
+
 }

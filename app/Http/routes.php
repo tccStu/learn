@@ -129,6 +129,9 @@ get('e/model/event','Note\EloquentController@modelEvent');
 // 软删除 ，表里面需要存在 deleted_at 字段
 get('e/soft/del','Note\EloquentController@softDel');
 
+//内联查询
+get('e/inner/where','Note\EloquentController@innerWhere');
+
 
 
 

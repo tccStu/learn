@@ -59,9 +59,9 @@ class RelationshipsController extends Controller
         //直接读取多有的字段
         //$rows = Article::with('user')->get()->toArray();
         //有选中的读取字段，但是字段中必须包含关联的键
-        $rows = Articles::with(['user'=>function($q)
+        $rows = Articles::with(['user'=>function($query)
         {
-            return $q->select('username','id');
+            return $query->select('username','id');
 
         }])->select('title','user_id')->get()->toArray();
 
