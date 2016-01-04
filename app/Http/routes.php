@@ -133,7 +133,8 @@ get('e/soft/del','Note\EloquentController@softDel');
 get('e/inner/where','Note\EloquentController@innerWhere');
 
 
-
+//一次插入1000条数据的时间
+get('e/sql','Note\EloquentController@sqltime');
 
 
 /*************************************   邮件发送   ***********************************************/

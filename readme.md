@@ -1,13 +1,16 @@
 ### note
-Auth 如果使用框架自带的Auth,但是你的用户表不是users 的话，那么需要在model里面修改用户表的table 属性，还有 配置文件里面 auth.php 里面的 'table' 的值
+创建队列失败的存储的表名
+php artisan queue:failed-table
 
-php artisan make:migration create_users_table --create='tcc_users'
+queue 驱动
+1.database 配置文件中的 QUEUE_DRIVER 修改为 database ，需要生成job表  php artisan queue:table 就ok
 
-create_users_table 会生成一个文件名为 CreateUsersTable 的 文件
-tcc_users 是要创建的表名
+2.redis  首页要配置 redis 环境，然后 配置文件中的 QUEUE_DRIVER 修改为 database，在控制台 查看命令 keys *;
 
-##数据填充
-php artisan make:migration seed_uses_table
-会生成一个SeedUsersTable 的文件  这里的users 与表无关
+3.beanstalkd  学习中......
 
-php artisan migrate  创建表、填充数据 都用它
+4.sync 默认选项，同步，主要用于测试
+
+
+
+

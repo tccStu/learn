@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Note;
 
 use App\Models\Articles;
+use App\Models\Time;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -304,4 +305,22 @@ class EloquentController extends Controller
 
     }
 
+    /**
+     *
+     */
+    public function sqltime(){
+        debug(microtime());
+
+        for($i = 1; $i <= 1000; $i++){
+            $user_id = rand(1,100000);
+            $click = $i;
+            //debug($i);
+            $data = ['user_id'=>$user_id,'click'=>$click];
+            Time::create($data);
+        }
+
+        debug(microtime());
+
+        return view('index');
+    }
 }

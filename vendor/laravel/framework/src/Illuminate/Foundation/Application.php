@@ -25,7 +25,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      *
      * @var string
      */
-    const VERSION = '5.1.27 (LTS)';
+    const VERSION = '5.1.28 (LTS)';
 
     /**
      * The base path for the Laravel installation.
@@ -140,11 +140,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     public function __construct($basePath = null)
     {
-        /**
-         * 1. 注册绑定 Illuminate\Foundation\Application 容器
-         * 2. 注册绑定 EventServiceProvider and RoutingServiceProvider 这两个服务容器
-         * 3. 注册框架的所有的核心服务
-         */
         $this->registerBaseBindings();
 
         $this->registerBaseServiceProviders();
@@ -173,23 +168,10 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     protected function registerBaseBindings()
     {
-        /**
-         * 这里的三种方式 都是一样的，就是实例化Illuminate\Foundation\Application 容器
-         * 下面三种写法 的原因 是  Illuminate\Container\Container 实现了 AccessArray 接口
-         */
-        /**
-         * 1. 相当于  $this->instance = $this
-         */
         static::setInstance($this);
 
-        /**
-         * 2. 相当于 $this->instance('app') = $this
-         */
         $this->instance('app', $this);
 
-        /**
-         * 3. 相当于 $this->instance('Illuminate\Container\Container') = Illuminate\Foundation\Application  or $this
-         */
         $this->instance('Illuminate\Container\Container', $this);
     }
 
@@ -200,9 +182,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     protected function registerBaseServiceProviders()
     {
-        /**
-         * 注册 EventServiceProvider and  RoutingServiceProvider 服务
-         */
         $this->register(new EventServiceProvider($this));
 
         $this->register(new RoutingServiceProvider($this));
@@ -214,28 +193,8 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      * @param  array  $bootstrappers
      * @return void
      */
-
     public function bootstrapWith(array $bootstrappers)
     {
-        /**
-         * $bootstrappers = [
-        'Illuminate\Foundation\Bootstrap\DetectEnvironment',
-        'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-        'Illuminate\Foundation\Bootstrap\ConfigureLogging',
-        'Illuminate\Foundation\Bootstrap\HandleExceptions',
-        'Illuminate\Foundation\Bootstrap\RegisterFacades',
-        'Illuminate\Foundation\Bootstrap\RegisterProviders',
-        'Illuminate\Foundation\Bootstrap\BootProviders',
-        ];
-         */
-        /**
-         *  在foreach 循环里 $bootstrapper =  'Illuminate\Foundation\Bootstrap\RegisterProviders' 时
-         * 主要就是  执行  $this->make($bootstrapper)->bootstrap($this);  它分成几部
-         * 1. call  Illuminate\Foundation\Bootstrap\RegisterProviders  的 bootstrap($this) method
-         * 2. call Illuminate\Foundation\Application  的 registerConfiguredProviders()  method
-         * 3. call ProviderRepository 的 load($this->config['app.providers'])  方法
-         */
-
         $this->hasBeenBootstrapped = true;
 
         foreach ($bootstrappers as $bootstrapper) {
@@ -556,45 +515,15 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      * @param  bool   $force
      * @return \Illuminate\Support\ServiceProvider
      */
-    protected  $i = 2;
     public function register($provider, $options = [], $force = false)
     {
-        /**
-         * $this->register(new EventServiceProvider($this));
-         */
-        //$registered = $this->getProvider($provider);
-        //print_r($registered);
-
-        /**
-         * 这个条件一直不会被执行
-         * 在下面的  markAsRegistered($provider) 里，$this->serviceProviders[] = $provider
-         *return Arr::first($this->serviceProviders, function ($key, $value) use ($name)
-         * {
-         *          return $value instanceof $name;
-         * });
-         */
-        $registered = $this->getProvider($provider);
-       /* if(!empty($this->i)){
-            print_r($registered);
-        }else{
-            dd();
-        }
-        $this->i--;*/
-
-        //print_r($registered);
-
         if ($registered = $this->getProvider($provider) && ! $force) {
-            echo "ing \n";
             return $registered;
         }
-
 
         // If the given "provider" is a string, we will resolve it, passing in the
         // application instance automatically for the developer. This is simply
         // a more convenient way of specifying your service provider classes.
-        /**
-         * 实例化 $provider
-         */
         if (is_string($provider)) {
             $provider = $this->resolveProviderClass($provider);
         }
@@ -628,25 +557,11 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     public function getProvider($provider)
     {
-        /**
-         * dd($provider) 出来的 就是  EventServiceProvider($this)
-         *
-         * $name 是    "Illuminate\Events\EventServiceProvider"
-         */
-        //dd($provider);
         $name = is_string($provider) ? $provider : get_class($provider);
 
-        //dd($name);
-        //print_r($this->serviceProviders);
-        // 返回所有 serviceProviders 的实例化对象
-        //$this->serviceProviders[] = new EventServiceProvider($this);
-        //$this->serviceProviders[] = new RoutingServiceProvider($this);
-        $a = Arr::first($this->serviceProviders, function ($key, $value) use ($name) {
+        return Arr::first($this->serviceProviders, function ($key, $value) use ($name) {
             return $value instanceof $name;
         });
-
-        //print_r($a);
-        return $a;
     }
 
     /**
@@ -668,8 +583,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      */
     protected function markAsRegistered($provider)
     {
-        /*print_r($this->serviceProviders);
-        echo "ing \n";*/
         $this['events']->fire($class = get_class($provider), [$provider]);
 
         $this->serviceProviders[] = $provider;

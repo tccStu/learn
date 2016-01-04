@@ -170,12 +170,6 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function bind($abstract, $concrete = null, $shared = false)
     {
-        /**
-         * $app->singleton('Illuminate\Contracts\Http\Kernel','App\Http\Kernel');
-         * $abstract  = 'Illuminate\Contracts\Http\Kernel'
-         * $concrete  =  'App\Http\Kernel';
-         * $shared = true
-         */
         // If the given types are actually an array, we will assume an alias is being
         // defined and will grab this "real" abstract class name and register this
         // alias with the container so that it can be used as a shortcut for it.
@@ -197,21 +191,10 @@ class Container implements ArrayAccess, ContainerContract
         // If the factory is not a Closure, it means it is just a class name which is
         // bound into this container to the abstract type and we will just wrap it
         // up inside its own Closure to give us more convenience when extending.
-        /**
-         * After getClosure
-         * 在这里$app->singleton('Illuminate\Contracts\Http\Kernel','App\Http\Kernel');  call 方法中
-         * getClosure()
-         * getClosure 的返回值  是这种形式  $c->$method($concrete, $parameters)
-         * 在此时等价于   $app->make('App\Http\Kernel');
-         */
         if (! $concrete instanceof Closure) {
             $concrete = $this->getClosure($abstract, $concrete);
         }
 
-        /**
-         * 最后只是传值到 bindings 阵列 ，注意concrete  的值  就是上面的  $concrete
-         * $this->bindings['Illuminate\Contracts\Http\Kernel'] = ['concrete'=>Callback,'shared'=>true]
-         */
         $this->bindings[$abstract] = compact('concrete', 'shared');
 
         // If the abstract type was already resolved in this container we'll fire the
@@ -286,13 +269,6 @@ class Container implements ArrayAccess, ContainerContract
      */
     public function share(Closure $closure)
     {
-        /**
-         * 在registerRouter() 方法里面， share($closure($app)),可以看到，这个闭包方法，有一个param $app,
-         * 所以，这里的$container  就是 $app
-         *  这个闭包函数的返回值  就是 instance Route,,所以这里的$closure 就是 Route 的实例
-         *  $this->app['router'] = $this->app->share(function ($app) {
-         *  return new Router($app['events'], $app);});
-         */
         return function ($container) use ($closure) {
             // We'll simply declare a static variable within the Closures and if it has
             // not been set we will execute the given Closures to resolve this value

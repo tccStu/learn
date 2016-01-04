@@ -39,7 +39,15 @@ class ArticlesController extends Controller
     /**
      *  把 读取模型数据 这件事 作为一个 任务
      *
+     *  加入一个队列任务：配置好队列驱动 在 .env 文件，或者config/queue.php 文件
      *
+     *   artisan queue:work
+     *   WorkerCommand:fire()
+     *   Worker:pop()
+     *   Worker:getNextJob()
+     *   RedisQueue:pop()
+     *   Worker:process()
+
      * @param Request $request
      * @param $id
      */
@@ -52,7 +60,7 @@ class ArticlesController extends Controller
          */
         //$job = (new articleViewFormFields($id))->delay(60);
         //$user = User::findOrFail(1);
-        $job = (new sendEmailJob())->delay(60);
+        $job = (new sendEmailJob());
 
 
         $data = $this->dispatch($job);
@@ -66,7 +74,9 @@ class ArticlesController extends Controller
 
     public function jobView(Request $request,$id){
         //$id = 5555;
+
         $article = Articles::findOrFail($id);
+
         if(empty($article)){
             debug('no one');
         }

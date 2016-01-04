@@ -63,7 +63,7 @@ class Encoder
         // will not attempt to use multiple modes / segments even if that were
         // more efficient. Would be nice.
         $mode = self::chooseMode($content, $encoding);
-        debug($mode->get());
+        //debug($mode->get());
         // This will store the header information, like mode and length, as well
         // as "header" segments like an ECI segment.
         $headerBits = new BitArray();
@@ -150,7 +150,7 @@ class Encoder
     protected static function getAlphanumericCode($code)
     {
         $code = (is_string($code) ? ord($code) : $code);
-        debug($code);
+        //debug($code);
         if (isset(self::$alphanumericTable[$code])) {
             return self::$alphanumericTable[$code];
         }
@@ -174,8 +174,8 @@ class Encoder
         $hasNumeric      = false;
         $hasAlphanumeric = false;
         $contentLength   = strlen($content);
-        debug($content);
-        debug($contentLength);
+        //debug($content);
+        //debug($contentLength);
         for ($i = 0; $i < $contentLength; $i++) {
             $char = $content[$i];
 

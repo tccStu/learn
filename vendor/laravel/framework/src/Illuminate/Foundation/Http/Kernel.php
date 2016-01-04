@@ -81,10 +81,6 @@ class Kernel implements KernelContract
      */
     public function handle($request)
     {
-        /**
-         * $request = Illuminate\Http\Request::capture()
-         *  这里
-         */
         try {
             $request->enableHttpMethodParameterOverride();
 
