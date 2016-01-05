@@ -6,6 +6,7 @@ use Pheanstalk\Pheanstalk;
 use Illuminate\Container\Container;
 use Pheanstalk\Job as PheanstalkJob;
 use Illuminate\Contracts\Queue\Job as JobContract;
+use SebastianBergmann\Environment\Console;
 
 class BeanstalkdJob extends Job implements JobContract
 {

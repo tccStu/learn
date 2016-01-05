@@ -4,10 +4,10 @@ namespace Pheanstalk;
 
 interface PheanstalkInterface
 {
-    const DEFAULT_PORT = 11300;
+    const DEFAULT_PORT = 80;
     const DEFAULT_DELAY = 0; // no delay
     const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
-    const DEFAULT_TTR = 60; // 1 minute
+    const DEFAULT_TTR = 10; // 1 minute
     const DEFAULT_TUBE = 'default';
 
     /**

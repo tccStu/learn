@@ -59,9 +59,9 @@ return [
 
         'iron' => [
             'driver'  => 'iron',
-            'host'    => 'localhost',
-            'token'   => 'jgeBpC884fbgfW1HzBwR',
-            'project' => ' 568a7a9e428876000900013e',
+            'host'    => 'mq-aws-us-east-1.iron.io',
+            'token'   => '8pxNFq9PAHGA3XUL69Lq',
+            'project' => '568b5d954826aa000600016e',
             'queue'   => 'iron-queue',
             'encrypt' => true,
         ],

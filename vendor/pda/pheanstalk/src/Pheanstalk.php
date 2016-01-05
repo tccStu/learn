@@ -234,6 +234,7 @@ class Pheanstalk implements PheanstalkInterface
         $ttr = PheanstalkInterface::DEFAULT_TTR
     )
     {
+        echo 'sss';
         $response = $this->_dispatch(
             new Command\PutCommand($data, $priority, $delay, $ttr)
         );

@@ -52,7 +52,7 @@ class IronCore
     protected $urlFetchData;
     protected $urlFetchUrl;
 
-    public $max_retries = 5;
+    public $max_retries = 1;
     public $debug_enabled = false;
     public $ssl_verifypeer = true;
     public $connection_timeout = 60;
@@ -258,8 +258,16 @@ class IronCore
         $url = "{$this->url}$url";
         $this->debug("API $type", $url);
 
+        //curlEnabled 只是放回 curl_version 方法是否存在
+
+        //print_r($this->curl);
+        //echo "----------\n";
+        //print_r($this->curlEnabled());
+
+
         if ($this->curl == null && $this->curlEnabled())
         {
+            //echo "***** curl is null ****** ";
             $this->curl = curl_init();
         }
         if (!isset($params['oauth']))
@@ -322,6 +330,7 @@ class IronCore
         }
         else
         {
+
             $this->debug("Call with URL Fetch", $url);
             if ($type == self::GET)
             {
@@ -359,14 +368,17 @@ class IronCore
             if ($this->curlEnabled())
             {
                 $_out = curl_exec($this->curl);
+
                 if ($_out === false)
                 {
                     $this->reportHttpError(0, curl_error($this->curl));
                 }
                 $this->last_status = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
+
             }
             else
             {
+
                 try
                 {
                     $_out = file_get_contents($this->urlFetchUrl, false, $this->urlFetchContext);
@@ -380,6 +392,7 @@ class IronCore
                     return null;
                 }
             }
+
             switch ($this->last_status)
             {
                 case self::HTTP_OK:

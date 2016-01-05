@@ -22,10 +22,10 @@ class sendEmailJob extends Job implements SelfHandling, ShouldQueue
      *
      * @return void
      */
-    public function __construct(/*LoginEvent $event*/)
-    {
+   // public function __construct(/*LoginEvent $event*/)
+    //{
         //$this->_event = $event;
-    }
+    //}
 
     /**
      * Execute the job.

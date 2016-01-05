@@ -24,8 +24,8 @@ class IronMQ extends IronCore
     protected $default_values = array(
         'protocol'    => 'http',
         'host'        => 'localhost',
-        'port'        => '443',
-        'api_version' => '3',
+        'port'        => '80',
+        'api_version' => '2',
     );
 
     const LIST_QUEUES_PER_PAGE = 30;
@@ -48,8 +48,15 @@ class IronMQ extends IronCore
      */
     public function __construct($config = null)
     {
+        //$this -> ssl_verifypeer = false;
+
         $this->getConfigData($config);
+
         $this->url = "{$this->protocol}://{$this->host}:{$this->port}/{$this->api_version}/";
+
+        //print_r($this->url);
+        //echo "--------------\n";
+
     }
 
     /**
@@ -151,6 +158,8 @@ class IronMQ extends IronCore
         );
         $this->setJsonHeaders();
         $queue = rawurlencode($queue_name);
+
+
         $url = "projects/{$this->project_id}/queues/$queue/messages";
         $res = $this->apiCall(self::POST, $url, $req);
         $decoded = self::json_decode($res);
