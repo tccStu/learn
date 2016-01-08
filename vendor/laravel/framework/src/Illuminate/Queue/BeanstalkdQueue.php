@@ -55,6 +55,11 @@ class BeanstalkdQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
+        /**
+         * createPayload($job), 它只是把传入的job  序列化，在组装成数组，转 json 格式传回来
+         *
+         * return json_encode(['job' => 'Illuminate\Queue\CallQueuedHandler@call','data' => ['command' => serialize(clone $job)]]);
+         */
         return $this->pushRaw($this->createPayload($job, $data), $queue);
     }
 
@@ -68,6 +73,14 @@ class BeanstalkdQueue extends Queue implements QueueContract
      */
     public function pushRaw($payload, $queue = null, array $options = [])
     {
+        /**
+         * 这里的 $payload  就是 job
+         * useTube($this->getQueue($queue)) 只是进行了参数的判定
+         * 等价于：$this->pheanstalk->put();
+         *
+         *  put 方法里面会实例化一个 PutCommand($payload, Pheanstalk::DEFAULT_PRIORITY, Pheanstalk::DEFAULT_DELAY, $this->timeToRun) class
+         *
+         */
         return $this->pheanstalk->useTube($this->getQueue($queue))->put(
             $payload, Pheanstalk::DEFAULT_PRIORITY, Pheanstalk::DEFAULT_DELAY, $this->timeToRun
         );

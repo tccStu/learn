@@ -35,7 +35,7 @@ class LoginEventListener
         $re = array('status'=>$status);
         //debug('in LoginEvent the LoginEventListen handle method');
 
-        $pathToFile = 'F:\wamp\www\test.php';
+        /*$pathToFile = 'F:\wamp\www\test.php';
         $image = 'F:\wamp\www\123.jpg';
         $theme = 'Theme'.rand(1000,1000000);
         $data = ['username'=>$user->username,'email'=>'527293671@qq.com','image'=>$image];
@@ -48,7 +48,12 @@ class LoginEventListener
         });
 
 
-        return  $mail;
+
+        return  $mail;*/
+
+        file_put_contents(app_path().'/queue.txt',time().'"\n"',FILE_APPEND);
+
+        return 'success';
     }
 
 

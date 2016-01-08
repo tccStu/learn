@@ -72,6 +72,8 @@ class PutCommand
      */
     public function getDataLength()
     {
+        /*echo "putCommand _data param in getDataLength method\n";
+        print_r($this->_data);*/
         if (function_exists('mb_strlen')) {
             return mb_strlen($this->_data, "latin1");
         } else {
@@ -84,6 +86,7 @@ class PutCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
+
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
             return $this->_createResponse('INSERTED', array(
                 'id' => (int) $matches[1]

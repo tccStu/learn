@@ -231,7 +231,9 @@ class Dispatcher implements DispatcherContract, QueueingDispatcher, HandlerResol
      */
     public function dispatchToQueue($command)
     {
+        //得到队列的驱动
         $queue = call_user_func($this->queueResolver);
+
 
         if (! $queue instanceof Queue) {
             throw new RuntimeException('Queue resolver did not return a Queue implementation.');

@@ -17,7 +17,7 @@ class NativeSocket implements Socket
     /**
      * The default timeout for a blocking read on the socket
      */
-    const SOCKET_TIMEOUT = 1;
+    const SOCKET_TIMEOUT = 60;
 
     /**
      * Number of retries for attempted writes which return zero length.
@@ -35,10 +35,10 @@ class NativeSocket implements Socket
     {
         if ($connectPersistent) {
             $this->_socket = $this->_wrapper()
-                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout);
         } else {
             $this->_socket = $this->_wrapper()
-                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
         }
 
         if (!$this->_socket) {
@@ -60,6 +60,8 @@ class NativeSocket implements Socket
             $fwrite = $this->_wrapper()
                 ->fwrite($this->_socket, substr($data, $written));
 
+            debug($fwrite);
+
             $history->log($fwrite);
 
             if ($history->isFullWithNoWrites()) {
@@ -69,6 +71,7 @@ class NativeSocket implements Socket
                 ));
             }
         }
+
     }
 
     /* (non-phpdoc)
@@ -99,10 +102,9 @@ class NativeSocket implements Socket
      */
     public function getLine($length = null)
     {
+
         do {
-            $data = isset($length) ?
-                $this->_wrapper()->fgets($this->_socket, $length) :
-                $this->_wrapper()->fgets($this->_socket);
+            $data = isset($length) ? $this->_wrapper()->fgets($this->_socket, $length) : $this->_wrapper()->fgets($this->_socket);
 
             if ($this->_wrapper()->feof($this->_socket)) {
                 throw new Exception\SocketException("Socket closed by server!");

@@ -25,8 +25,6 @@ class Job
      */
     public function __construct($id, $data)
     {
-        echo " in pheanstalk/src/job construct----\n";
-        echo $id;
 
         $this->_id = (int) $id;
         $this->_data = $data;

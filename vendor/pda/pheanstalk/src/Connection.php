@@ -51,6 +51,7 @@ class Connection
             $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
         }
 
+
         $this->_hostname = $hostname;
         $this->_port = $port;
         $this->_connectTimeout = $connectTimeout;
@@ -89,7 +90,7 @@ class Connection
     }
 
     /**
-     * @param  object                    $command Command
+     * @param  object                    $command PutCommand
      * @return object                    Response
      * @throws Exception\ClientException
      */
@@ -97,15 +98,23 @@ class Connection
     {
         $socket = $this->_getSocket();
 
+
         $to_send = $command->getCommandLine().self::CRLF;
+
+        //debug($to_send);
 
         if ($command->hasData()) {
             $to_send .= $command->getData().self::CRLF;
         }
 
+
         $socket->write($to_send);
 
+        //这里文件指针肯定是在文件的结尾处
+        //那么 getLine() 它是返回文件指针的下一行字符串，那么肯定应该是 null,
         $responseLine = $socket->getLine();
+        //$responseLine = 'put 1024 0 60 199';
+
         $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
         if (isset(self::$_errorResponses[$responseName])) {
@@ -137,9 +146,7 @@ class Connection
             $data = null;
         }
 
-        return $command
-            ->getResponseParser()
-            ->parseResponse($responseLine, $data);
+        return $command->getResponseParser()->parseResponse($responseLine, $data);
     }
 
     /**

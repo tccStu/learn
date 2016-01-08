@@ -227,14 +227,9 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function put(
-        $data,
-        $priority = PheanstalkInterface::DEFAULT_PRIORITY,
-        $delay = PheanstalkInterface::DEFAULT_DELAY,
-        $ttr = PheanstalkInterface::DEFAULT_TTR
-    )
+    public function put($data, $priority = PheanstalkInterface::DEFAULT_PRIORITY, $delay = PheanstalkInterface::DEFAULT_DELAY, $ttr = PheanstalkInterface::DEFAULT_TTR)
     {
-        echo 'sss';
+        //print_r($data);
         $response = $this->_dispatch(
             new Command\PutCommand($data, $priority, $delay, $ttr)
         );
@@ -393,6 +388,7 @@ class Pheanstalk implements PheanstalkInterface
      */
     private function _dispatch($command)
     {
+        //print_r($this->_connection);
         try {
             $response = $this->_connection->dispatchCommand($command);
         } catch (Exception\SocketException $e) {
