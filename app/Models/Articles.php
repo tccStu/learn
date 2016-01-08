@@ -128,10 +128,17 @@ class Articles extends BaseModels
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * 第一个参数：B
+     * 第二个参数：A 与 B外键 ， 如果不写，那么默认为 第四个参数名_id （user_id）
+     * 第三个参数：B 与 A 关联的外键的 键,如果不写，默认就是 B 模型的 主键
+     * 第四个参数：如果不写，默认就是函数名
+     *
+     * 查看表 下面两个语句 是等价 的
      */
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User','user_id','id','user');
+
+        //return $this->belongsTo('App\Models\User');
     }
 
     /**

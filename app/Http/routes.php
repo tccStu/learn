@@ -37,7 +37,7 @@ get('param/{id?}',function($id = 1){
 Route::any('r/has/many',['uses'=>'Note\RelationshipsController@userArticle']);
 
 Route::any('r/belongs/to',['uses'=>'Note\RelationshipsController@articleUser']);
-//多对多
+//多对多, 枢纽表 pivot
 Route::any('r/many',['uses'=>'Note\RelationshipsController@userRole']);
 
 Route::any('r/manys',['uses'=>'Note\RelationshipsController@roleUser']);
@@ -49,8 +49,10 @@ Route::any('r/morph',['uses'=>'Note\RelationshipsController@morph']);
 
 Route::any('r/morph/to',['uses'=>'Note\RelationshipsController@morphTo']);
 
-
 Route::any('r/pre/load',['uses'=>'Note\RelationshipsController@preLoad']);
+
+//关联查询
+Route::any('r/query',['uses'=>'Note\RelationshipsController@queryRelation']);
 
 
 

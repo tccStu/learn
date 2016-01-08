@@ -48,10 +48,15 @@ class User extends Model implements AuthenticatableContract,
 
     /**
      * 一对多关系
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * 第一个参数：关系的模型
+     * 第二个参数：关系模型与本模型 关联关系的 外键，如果不写，那么默认为本模型的模型名称_id （user_id）
+     * 第三个参数：本模型与关系模型 关联关系的 键, 如果不写，那么默认就是本模型的主键
      */
     public function article(){
-        return $this->hasMany('App\Models\Articles');
+        //return $this->hasMany('App\Models\Articles');
+
+        return $this->hasMany('App\Models\Articles','user_id','id');
     }
 
     /**

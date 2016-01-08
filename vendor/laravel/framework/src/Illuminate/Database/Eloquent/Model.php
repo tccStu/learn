@@ -817,6 +817,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
             $relation = $caller['function'];
         }
 
+        //debug($relation);
         // If no foreign key was supplied, we can use a backtrace to guess the proper
         // foreign key name by using the name of the relationship function, which
         // when combined with an "_id" should conventionally match the columns.
@@ -824,7 +825,10 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
             $foreignKey = Str::snake($relation).'_id';
         }
 
+        //debug($foreignKey);
+
         $instance = new $related;
+
 
         // Once we have the foreign key names, we'll just create a new Eloquent query
         // for the related models and returns the relationship instance which will
@@ -832,6 +836,8 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         $query = $instance->newQuery();
 
         $otherKey = $otherKey ?: $instance->getKeyName();
+
+        //debug($otherKey);
 
         return new BelongsTo($query, $this, $foreignKey, $otherKey, $relation);
     }
@@ -901,11 +907,17 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      */
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
+        //debug($this);
+
         $foreignKey = $foreignKey ?: $this->getForeignKey();
+
+        //debug($foreignKey);
 
         $instance = new $related;
 
         $localKey = $localKey ?: $this->getKeyName();
+
+        //debug($localKey);
 
         return new HasMany($instance->newQuery(), $this, $instance->getTable().'.'.$foreignKey, $localKey);
     }
